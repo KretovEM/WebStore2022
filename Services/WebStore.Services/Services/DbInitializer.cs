@@ -1,14 +1,14 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.Logging;
 using WebStore.DAL.Context;
-using WebStore.Data;
 using WebStore.Domain.Entities.Identity;
-using WebStore.Services.Interfaces;
+using WebStore.Interfaces.Services;
+using WebStore.Services.Data;
 // ReSharper disable AsyncApostle.ConfigureAwaitHighlighting
 
-namespace WebStore.Services;
+namespace WebStore.Services.Services;
 
 public class DbInitializer : IDbInitializer
 {
@@ -19,8 +19,8 @@ public class DbInitializer : IDbInitializer
 
     public DbInitializer(
         WebStoreDB db,
-        UserManager<User> UserManager, 
-        RoleManager<Role> RoleManager, 
+        UserManager<User> UserManager,
+        RoleManager<Role> RoleManager,
         ILogger<DbInitializer> Logger)
     {
         _db = db;

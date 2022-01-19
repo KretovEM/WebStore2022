@@ -1,10 +1,11 @@
 ﻿using Newtonsoft.Json;
 using WebStore.Domain.Entities;
-using WebStore.Infrastructure.Mapping;
-using WebStore.Services.Interfaces;
 using WebStore.Domain.ViewModels;
+using Microsoft.AspNetCore.Http;
+using WebStore.Services.Mapping;
+using WebStore.Interfaces.Services;
 
-namespace WebStore.Services.InCookies;
+namespace WebStore.Services.Services.InCookies;
 
 public class InCookiesCartService : ICartService
 {
@@ -69,7 +70,7 @@ public class InCookiesCartService : ICartService
         var cart = Cart;
 
         var item = cart.Items.FirstOrDefault(i => i.ProductId == Id);
-        if(item is null)
+        if (item is null)
             return;
 
         if (item.Quantity > 0)
