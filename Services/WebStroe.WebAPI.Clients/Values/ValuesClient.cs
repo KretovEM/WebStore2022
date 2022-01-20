@@ -1,9 +1,16 @@
 ﻿using WebStore.Interfaces.TestAPI;
+using WebStroe.WebAPI.Clients.Base;
 
 namespace WebStroe.WebAPI.Clients.Values;
 
-public class ValuesClient : IValueService
+public class ValuesClient : BaseClient, IValuesService
 {
+    
+    public ValuesClient(HttpClient Client) : base(Client, "api/values")
+    {
+
+    }
+
     public void Add(string Value)
     {
         throw new NotImplementedException();

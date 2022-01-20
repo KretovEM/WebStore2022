@@ -1,6 +1,6 @@
 ﻿namespace WebStore.Interfaces.TestAPI;
 
-public interface IValueService
+public interface IValuesService
 {
     IEnumerable<string> GetValues();
     
