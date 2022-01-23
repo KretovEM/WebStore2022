@@ -11,6 +11,7 @@ using WebStore.Interfaces.TestAPI;
 using WebStore.Services.Services;
 using WebStore.Services.Services.InCookies;
 using WebStore.Services.Services.InSQL;
+using WebStroe.WebAPI.Clients.Employees;
 using WebStroe.WebAPI.Clients.Values;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -83,13 +84,14 @@ services.ConfigureApplicationCookie(opt =>
 //services.AddSingleton<IEmployeesData, InMemoryEmployeesData>(); // Singleton - потому что InMemory!
 //services.AddSingleton<IProductData, InMemoryProductData>();     // Singleton - потому что InMemory!
 
-services.AddScoped<IEmployeesData, SqlEmployeesData>();
+//services.AddScoped<IEmployeesData, SqlEmployeesData>();
 services.AddScoped<IProductData, SqlProductData>(); // !!! AddScoped !!!
 services.AddScoped<IOrderService, SqlOrderService>();
 services.AddScoped<ICartService, InCookiesCartService>();
 
 var configuration = builder.Configuration;
 services.AddHttpClient<IValuesService, ValuesClient>(client => client.BaseAddress = new(configuration["WebAPI"]));
+services.AddHttpClient<IEmployeesData, EmployessClient>(client => client.BaseAddress = new(configuration["WebAPI"]));
 
 #endregion
 
