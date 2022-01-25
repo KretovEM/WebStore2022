@@ -7,9 +7,14 @@ using WebStore.Domain.Entities.Identity;
 using WebStore.Infrastructure.Conventions;
 using WebStore.Infrastructure.Middleware;
 using WebStore.Interfaces.Services;
+using WebStore.Interfaces.TestAPI;
 using WebStore.Services.Services;
 using WebStore.Services.Services.InCookies;
 using WebStore.Services.Services.InSQL;
+using WebStore.WebAPI.Clients.Orders;
+using WebStroe.WebAPI.Clients.Employees;
+using WebStroe.WebAPI.Clients.Products;
+using WebStroe.WebAPI.Clients.Values;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -81,10 +86,23 @@ services.ConfigureApplicationCookie(opt =>
 //services.AddSingleton<IEmployeesData, InMemoryEmployeesData>(); // Singleton - потому что InMemory!
 //services.AddSingleton<IProductData, InMemoryProductData>();     // Singleton - потому что InMemory!
 
-services.AddScoped<IEmployeesData, SqlEmployeesData>();
-services.AddScoped<IProductData, SqlProductData>(); // !!! AddScoped !!!
-services.AddScoped<IOrderService, SqlOrderService>();
+//services.AddScoped<IEmployeesData, SqlEmployeesData>();
+//services.AddScoped<IProductData, SqlProductData>(); // !!! AddScoped !!!
+//services.AddScoped<IOrderService, SqlOrderService>();
 services.AddScoped<ICartService, InCookiesCartService>();
+
+var configuration = builder.Configuration;
+//services.AddHttpClient<IValuesService, ValuesClient>(client => client.BaseAddress = new(configuration["WebAPI"]));
+//services.AddHttpClient<IEmployeesData, EmployessClient>(client => client.BaseAddress = new(configuration["WebAPI"]));
+//services.AddHttpClient<IProductData, ProductsClient>(client => client.BaseAddress = new(configuration["WebAPI"]));
+//services.AddHttpClient<IOrderService, OrdersClient>(client => client.BaseAddress = new(configuration["WebAPI"]));
+
+
+services.AddHttpClient("WebStoreApi", client => client.BaseAddress = new(configuration["WebAPI"]))
+    .AddTypedClient<IValuesService, ValuesClient>()
+    .AddTypedClient<IEmployeesData, EmployessClient>()
+    .AddTypedClient<IProductData, ProductsClient>()
+    .AddTypedClient<IOrderService, OrdersClient>();
 
 #endregion
 
