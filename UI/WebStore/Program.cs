@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-
 using WebStore.DAL.Context;
 using WebStore.Domain.Entities.Identity;
 using WebStore.Infrastructure.Conventions;
@@ -10,7 +8,6 @@ using WebStore.Interfaces.Services;
 using WebStore.Interfaces.TestAPI;
 using WebStore.Services.Services;
 using WebStore.Services.Services.InCookies;
-using WebStore.Services.Services.InSQL;
 using WebStore.WebAPI.Clients.Orders;
 using WebStroe.WebAPI.Clients.Employees;
 using WebStroe.WebAPI.Clients.Products;
