@@ -9,9 +9,9 @@ using WebStore.Interfaces.TestAPI;
 using WebStore.Services.Services;
 using WebStore.Services.Services.InCookies;
 using WebStore.WebAPI.Clients.Orders;
-using WebStroe.WebAPI.Clients.Employees;
-using WebStroe.WebAPI.Clients.Products;
-using WebStroe.WebAPI.Clients.Values;
+using WebStore.WebAPI.Clients.Employees;
+using WebStore.WebAPI.Clients.Products;
+using WebStore.WebAPI.Clients.Values;
 
 var builder = WebApplication.CreateBuilder(args);
 

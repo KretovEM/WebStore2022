@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Json;
 
-namespace WebStroe.WebAPI.Clients.Base;
+namespace WebStore.WebAPI.Clients.Base;
 
 public abstract class BaseClient
 {

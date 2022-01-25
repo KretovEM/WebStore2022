@@ -1,9 +1,9 @@
 ﻿using System.Net.Http.Json;
 using WebStore.Interfaces;
 using WebStore.Interfaces.TestAPI;
-using WebStroe.WebAPI.Clients.Base;
+using WebStore.WebAPI.Clients.Base;
 
-namespace WebStroe.WebAPI.Clients.Values;
+namespace WebStore.WebAPI.Clients.Values;
 
 public class ValuesClient : BaseClient, IValuesService
 {

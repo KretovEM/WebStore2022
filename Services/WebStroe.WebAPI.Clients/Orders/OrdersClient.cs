@@ -4,7 +4,7 @@ using WebStore.Domain.Entities.Orders;
 using WebStore.Domain.ViewModels;
 using WebStore.Interfaces;
 using WebStore.Interfaces.Services;
-using WebStroe.WebAPI.Clients.Base;
+using WebStore.WebAPI.Clients.Base;
 
 namespace WebStore.WebAPI.Clients.Orders;
 
