@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -25,7 +25,7 @@
     <ProjectReference Include="..\..\Data\WebStore.DAL\WebStore.DAL.csproj" />
     <ProjectReference Include="..\..\Services\WebStore.Interfaces\WebStore.Interfaces.csproj" />
     <ProjectReference Include="..\..\Services\WebStore.Services\WebStore.Services.csproj" />
-    <ProjectReference Include="..\..\Services\WebStroe.WebAPI.Clients\WebStroe.WebAPI.Clients.csproj" />
+    <ProjectReference Include="..\..\Services\WebStroe.WebAPI.Clients\WebStore.WebAPI.Clients.csproj" />
   </ItemGroup>
 
 </Project>

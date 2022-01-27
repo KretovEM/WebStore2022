@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebStore.Domain.DTO;
+using WebStore.Interfaces;
 using WebStore.Interfaces.Services;
 
 namespace WebStore.WebAPI.Controllers;
 
-[Route("api/orders")]
+[Route(WebAPIAddresses.Orders)]
 [ApiController]
 public class OrdersApiController : ControllerBase
 {
