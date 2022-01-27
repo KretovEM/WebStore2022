@@ -13,6 +13,7 @@ using WebStore.WebAPI.Clients.Employees;
 using WebStore.WebAPI.Clients.Products;
 using WebStore.WebAPI.Clients.Values;
 using WebStore.WebAPI.Clients.Identity;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -112,6 +113,8 @@ services.AddHttpClient("WebStoreApi", client => client.BaseAddress = new(configu
     .AddTypedClient<IEmployeesData, EmployessClient>()
     .AddTypedClient<IProductData, ProductsClient>()
     .AddTypedClient<IOrderService, OrdersClient>();
+
+services.AddAutoMapper(Assembly.GetEntryAssembly());
 
 #endregion
 

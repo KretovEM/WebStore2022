@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebStore.Domain.Entities;
 using WebStore.Domain.Entities.Identity;
@@ -13,11 +14,13 @@ namespace WebStore.Controllers
     public class EmployeesController : Controller
     {
         private readonly IEmployeesData _EmployeesData;
+        private readonly IMapper _mapper;
         private readonly ILogger<EmployeesController> _Logger;
 
-        public EmployeesController(IEmployeesData EmployeesData, ILogger<EmployeesController> Logger)
+        public EmployeesController(IEmployeesData EmployeesData, IMapper Mapper, ILogger<EmployeesController> Logger)
         {
             _EmployeesData = EmployeesData;
+            _mapper = Mapper;
             _Logger = Logger;
         }
 
@@ -60,14 +63,15 @@ namespace WebStore.Controllers
                 return NotFound();
             }
 
-            var model = new EmployeeViewModel
-            {
-                Id = employee.Id,
-                LastName = employee.LastName,
-                Name = employee.FirstName,
-                Patronymic = employee.Patronymic,
-                Age = employee.Age,
-            };
+            //var model = new EmployeeViewModel
+            //{
+            //    Id = employee.Id,
+            //    LastName = employee.LastName,
+            //    Name = employee.FirstName,
+            //    Patronymic = employee.Patronymic,
+            //    Age = employee.Age,
+            //};
+            var model = _mapper.Map<EmployeeViewModel>(employee);
 
             return View(model);
         }
@@ -82,14 +86,16 @@ namespace WebStore.Controllers
             if (!ModelState.IsValid)
                 return View(Model);
 
-            var employee = new Employee
-            {
-                Id = Model.Id,
-                LastName = Model.LastName,
-                FirstName = Model.Name,
-                Patronymic = Model.Patronymic,
-                Age = Model.Age,
-            };
+            //var employee = new Employee
+            //{
+            //    Id = Model.Id,
+            //    LastName = Model.LastName,
+            //    FirstName = Model.Name,
+            //    Patronymic = Model.Patronymic,
+            //    Age = Model.Age,
+            //};
+
+            var employee = _mapper.Map<Employee>(Model);
 
             if (Model.Id == 0)
             {
@@ -115,14 +121,15 @@ namespace WebStore.Controllers
             if (employee is null)
                 return NotFound();
 
-            var model = new EmployeeViewModel
-            {
-                Id = employee.Id,
-                LastName = employee.LastName,
-                Name = employee.FirstName,
-                Patronymic = employee.Patronymic,
-                Age = employee.Age,
-            };
+            //var model = new EmployeeViewModel
+            //{
+            //    Id = employee.Id,
+            //    LastName = employee.LastName,
+            //    Name = employee.FirstName,
+            //    Patronymic = employee.Patronymic,
+            //    Age = employee.Age,
+            //};
+            var model = _mapper.Map<EmployeeViewModel>(employee);
 
             return View(model);
         }
