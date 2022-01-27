@@ -207,7 +207,7 @@ public class UsersApiController : ControllerBase
     public async Task<string> GetNormalizedEmailAsync([FromBody] User user) => await _UserStore.GetNormalizedEmailAsync(user);
 
     [HttpPost("SetNormalizedEmail/{email?}")]
-    public async Task<string> SetNormalizedEmailAsync([FromBody] User user, string email)
+    public async Task<string> SetNormalizedEmailAsync([FromBody] User user, string? email)
     {
         await _UserStore.SetNormalizedEmailAsync(user, email);
         await _UserStore.UpdateAsync(user);
