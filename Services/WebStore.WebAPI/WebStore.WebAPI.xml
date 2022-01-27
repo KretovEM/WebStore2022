@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebStore.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:WebStore.WebAPI.Controllers.EmployeesApiController.Get">
+            <summary>
+                Получение всех сотрудников
+            </summary>
+        </member>
+        <member name="M:WebStore.WebAPI.Controllers.EmployeesApiController.GetById(System.Int32)">
+            <summary>
+                Получение сотрудника по его идентификатору
+            </summary>
+            <param name="Id">Идентификатор сотрудника</param>
+        </member>
+        <member name="M:WebStore.WebAPI.Controllers.EmployeesApiController.Add(WebStore.Domain.Entities.Employee)">
+            <summary>
+                Добавление нового сотрудника
+            </summary>
+            <param name="employee">Новый сотрудник</param>
+        </member>
+        <member name="M:WebStore.WebAPI.Controllers.EmployeesApiController.Update(WebStore.Domain.Entities.Employee)">
+            <summary>
+                Обновление информации о сотруднике
+            </summary>
+            <param name="employee">Структура с информацией о сотруднике</param>
+        </member>
+        <member name="M:WebStore.WebAPI.Controllers.EmployeesApiController.Delete(System.Int32)">
+            <summary>
+                Удаление сотрудника по его идентификатору
+            </summary>
+            <param name="Id">Идентификатор удаляемого сотрудника</param>
+        </member>
+    </members>
+</doc>

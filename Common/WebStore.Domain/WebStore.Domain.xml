@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebStore.Domain</name>
+    </assembly>
+    <members>
+        <member name="P:WebStore.Domain.Entities.Base.Entity.Id">
+            <summary>
+                Идентификатор
+            </summary>
+        </member>
+        <member name="T:WebStore.Domain.Entities.Employee">
+            <summary>
+                Сотрудник
+            </summary>
+        </member>
+        <member name="P:WebStore.Domain.Entities.Employee.LastName">
+            <summary>
+                Фамилия
+            </summary>
+        </member>
+        <member name="P:WebStore.Domain.Entities.Employee.FirstName">
+            <summary>
+                Имя
+            </summary>
+        </member>
+        <member name="P:WebStore.Domain.Entities.Employee.Patronymic">
+            <summary>
+                Отчество
+            </summary>
+        </member>
+        <member name="P:WebStore.Domain.Entities.Employee.Age">
+            <summary>
+                Возраст
+            </summary>
+        </member>
+        <member name="T:WebStore.Domain.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:WebStore.Domain.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:WebStore.Domain.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>
