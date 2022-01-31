@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.Debug;
 using WebStore.DAL.Context;
 using WebStore.Domain.Entities.Identity;
 using WebStore.Infrastructure.Conventions;
@@ -14,6 +15,7 @@ using WebStore.WebAPI.Clients.Products;
 using WebStore.WebAPI.Clients.Values;
 using WebStore.WebAPI.Clients.Identity;
 using System.Reflection;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
