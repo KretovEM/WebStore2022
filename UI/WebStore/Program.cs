@@ -13,11 +13,14 @@ using WebStore.WebAPI.Clients.Orders;
 using WebStore.WebAPI.Clients.Employees;
 using WebStore.WebAPI.Clients.Products;
 using WebStore.WebAPI.Clients.Values;
+using WebStore.Logging;
 using WebStore.WebAPI.Clients.Identity;
 using System.Reflection;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.AddLog4Net();
 
 #region Настройка построителя приложения - определение содержимого
 
