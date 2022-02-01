@@ -6,6 +6,7 @@ using WebStore.Interfaces.Services;
 using WebStore.Logging;
 using WebStore.Services.Services;
 using WebStore.Services.Services.InSQL;
+using WebStore.WebAPI.Infrastructure.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -91,6 +92,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
 
