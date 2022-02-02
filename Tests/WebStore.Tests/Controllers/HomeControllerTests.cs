@@ -106,4 +106,22 @@ public class HomeControllerTests
 
         Assert.Equal(exception_message, actual_exception_message);
     }
+
+    [TestMethod]
+    public void Status_with_id_404_Returns_RedirectToAction_Error404()
+    {
+        const string status_404 = "404";
+        const string expected_action_name = nameof(HomeController.Error404);
+
+        var controller = new HomeController();
+
+        var result = controller.Status(status_404);
+
+        var redirect_action_result = Assert.IsType<RedirectToActionResult>(result);
+
+        Assert.Null(redirect_action_result.ControllerName);
+
+        var actual_action_name = redirect_action_result.ActionName;
+        Assert.Equal(expected_action_name, actual_action_name);
+    }
 }
