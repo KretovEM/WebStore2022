@@ -115,7 +115,7 @@ services.ConfigureApplicationCookie(opt =>
 //services.AddScoped<IEmployeesData, SqlEmployeesData>();
 //services.AddScoped<IProductData, SqlProductData>(); // !!! AddScoped !!!
 //services.AddScoped<IOrderService, SqlOrderService>();
-services.AddScoped<ICartService, InCookiesCartService>();
+services.AddScoped<ICartService, CartService>();
 services.AddScoped<ICartStore, InCookiesCartStore>();
 
 
