@@ -116,6 +116,7 @@ services.ConfigureApplicationCookie(opt =>
 //services.AddScoped<IProductData, SqlProductData>(); // !!! AddScoped !!!
 //services.AddScoped<IOrderService, SqlOrderService>();
 services.AddScoped<ICartService, InCookiesCartService>();
+services.AddScoped<ICartStore, InCookiesCartStore>();
 
 
 //services.AddHttpClient<IValuesService, ValuesClient>(client => client.BaseAddress = new(configuration["WebAPI"]));
