@@ -36,10 +36,21 @@ public class ProductsClient : BaseClient, IProductData
         return brand.FromDTO();
     }
 
-    public IEnumerable<Brand> GetBrands()
+    public IEnumerable<Brand> GetBrands(int Skip = 0, int? Take = null)
     {
-        var brands = Get<IEnumerable<BrandDTO>>($"{Address}/brands");
-        return brands!.FromDTO();
+        IEnumerable<BrandDTO>? brands;
+        if (Skip > 0 && Take > 0)
+            brands = Get<IEnumerable<BrandDTO>>($"{Address}/brands({Skip}-{Take})");
+        else
+            brands = Get<IEnumerable<BrandDTO>>($"{Address}/brands");
+
+        return brands!.FromDTO()!;
+    }
+
+    public int GetBrandsCount()
+    {
+        var count = Get<int>($"{Address}/brands/count");
+        return count;
     }
 
     public Product? GetProductById(int Id)
@@ -61,9 +72,21 @@ public class ProductsClient : BaseClient, IProductData
         return section.FromDTO();
     }
 
-    public IEnumerable<Section> GetSections()
+    public IEnumerable<Section> GetSections(int Skip = 0, int? Take = null)
     {
-        var sections = Get<IEnumerable<SectionDTO>>($"{Address}/sections");
-        return sections!.FromDTO();
+        IEnumerable<SectionDTO>? sections;
+
+        if (Skip > 0 && Take > 0)
+            sections = Get<IEnumerable<SectionDTO>>($"{Address}/sections({Skip}-{Take})");
+        else
+            sections = Get<IEnumerable<SectionDTO>>($"{Address}/sections");
+
+        return sections!.FromDTO()!;
+    }
+
+    public int GetSectionsCount()
+    {
+        var count = Get<int>($"{Address}/sections/count");
+        return count;
     }
 }
