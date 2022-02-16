@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebStore.Domain.Entities.Identity;
@@ -6,6 +7,7 @@ using WebStore.Domain.ViewModels.Identity;
 
 namespace WebStore.Controllers;
 
+[Authorize]
 public class AccountController : Controller
 {
     private readonly UserManager<User> _UserManager;
@@ -19,8 +21,21 @@ public class AccountController : Controller
         _Logger = Logger;
     }
 
+    [AllowAnonymous]
+    public async Task<IActionResult> IsFreeName(string UserName)
+    {
+        var user = await _UserManager.FindByNameAsync(UserName);
+        _Logger.LogInformation("Валидация наличия пользователя {0} - {1}",
+            UserName,
+            user is null ? "отсутствует" : "существует");
+
+        return Json(user is null ? "true" : $"Пользователь с таким именем {UserName} уже существует");
+    }
+
+    [AllowAnonymous]
     public IActionResult Register() => View(new RegisterUserViewModel());
 
+    [AllowAnonymous]
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(RegisterUserViewModel Model, [FromServices] IMapper Mapper)
     {
@@ -70,8 +85,10 @@ public class AccountController : Controller
         return View(Model);
     }
 
+    [AllowAnonymous]
     public IActionResult Login(string ReturnUrl) => View(new LoginViewModel { ReturnUrl = ReturnUrl });
 
+    [AllowAnonymous]
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginViewModel Model)
     {
@@ -114,6 +131,7 @@ public class AccountController : Controller
         return RedirectToAction("Index", "Home");
     }
 
+    [AllowAnonymous]
     public IActionResult AccessDenied()
     {
         _Logger.LogWarning("Ошибка доступа к {0}", ControllerContext.HttpContext.Request.Path);
