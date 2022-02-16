@@ -27,7 +27,7 @@ public class Paging : TagHelper
     {
         var ul = new TagBuilder("ul");
         ul.AddCssClass("pagination");
-
+        
         var url_helper = _UrlHelperFactory.GetUrlHelper(ViewContext);
         // чтоб вычисление не происходило каждый раз в цикле
         var total_pages = PageModel.TotalPages;
@@ -47,9 +47,13 @@ public class Paging : TagHelper
             li.AddCssClass("active");
         else
         {
-            PageUrlValues["page"] = PageNumber;
-            a.Attributes["href"] = Url.Action(PageAction, PageUrlValues);
+            a.Attributes["href"] = "#";
         }
+
+        PageUrlValues["page"] = PageNumber;
+
+        foreach (var (key, value) in PageUrlValues.Select(v => (v.Key, Value: v.Value?.ToString())).Where(v => v.Value is { Length: > 0 }))
+            a.MergeAttribute($"data-{key}", value);
 
         li.InnerHtml.AppendHtml(a);
         return li;
