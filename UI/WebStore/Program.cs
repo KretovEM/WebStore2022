@@ -18,6 +18,7 @@ using Serilog.Formatting.Json;
 using Serilog.Events;
 using Polly;
 using Polly.Extensions.Http;
+using WebStore.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -130,6 +131,7 @@ static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy() =>
        .CircuitBreakerAsync(handledEventsAllowedBeforeBreaking: 5, TimeSpan.FromSeconds(30));
 
 services.AddAutoMapper(Assembly.GetEntryAssembly());
+services.AddSignalR();
 
 #endregion
 
@@ -161,6 +163,7 @@ app.UseWelcomePage("/welcome");
 
 app.UseEndpoints(endpoints =>
 {
+    endpoints.MapHub<ChatHub>("/chat");
     endpoints.MapControllerRoute(
         name: "areas",
         pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
