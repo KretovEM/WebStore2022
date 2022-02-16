@@ -80,9 +80,13 @@ services.AddScoped<IEmployeesData, SqlEmployeesData>();
 services.AddScoped<IProductData, SqlProductData>();
 services.AddScoped<IOrderService, SqlOrderService>();
 
-
-
 var app = builder.Build();
+
+await using (var scope = app.Services.CreateAsyncScope())
+{
+    var db_initializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+    await db_initializer.InitializeAsync(RemoveBefore: false).ConfigureAwait(true);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
