@@ -14,7 +14,7 @@ public class SqlProductData : IProductData
 
     public IEnumerable<Section> GetSections(int Skip = 0, int? Take = null)
     {
-        IQueryable<Section> query = _db.Sections;
+        IQueryable<Section> query = _db.Sections.OrderBy(s => s.Order);
         if (Skip > 0) query = query.Skip(Skip);
         if (Take > 0) query = query.Take((int)Take);
         return query.AsEnumerable();
@@ -29,7 +29,7 @@ public class SqlProductData : IProductData
     public IEnumerable<Brand> GetBrands(int Skip = 0, int? Take = null)
     {
         IQueryable<Brand> query = _db.Brands;
-        if (Skip > 0) query = query.Skip(Skip);
+        if (Skip > 0) query = query.Skip(Skip).OrderBy(s => s.Order);
         if (Take > 0) query = query.Take((int)Take);
         return query.AsEnumerable();
     }
@@ -61,8 +61,9 @@ public class SqlProductData : IProductData
 
         if (Filter is { PageSize: > 0 and var page_size, Page: > 0 and var page })
             query = query
-               .Skip((page - 1) * page_size)
-               .Take(page_size);
+                .OrderBy(s => s.Order)
+                .Skip((page - 1) * page_size)
+                .Take(page_size);
 
         return new(query.AsEnumerable(), count);
     }
