@@ -15,11 +15,15 @@
     <script src="~/js/respond.min.js"></script>
     <![endif]-->       
     <link rel="shortcut icon" href="~/images/ico/favicon.ico">
+
+    @await RenderSectionAsync("Styles", false)
 </head><!--/head-->
 
 <body>
     @RenderBody()
     
     <partial name="Partial/_Scripts"/>
+
+    @await RenderSectionAsync("Scripts", false)
 </body>
 </html>
